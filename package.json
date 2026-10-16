@@ -1,0 +1,54 @@
+{
+  "name": "budget-tracker",
+  "productName": "Budget Tracker",
+  "version": "1.0.0",
+  "description": "Personal budgeting app: track income and expenses by category, percentage-based budgets, and month-to-month trends.",
+  "main": "main.js",
+  "author": "Mclaren97x",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mclaren97x/budget-tracker.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never",
+    "release": "npm version patch && git push --follow-tags",
+    "release:minor": "npm version minor && git push --follow-tags"
+  },
+  "build": {
+    "appId": "com.mclaren97x.budgettracker",
+    "productName": "Budget Tracker",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "Budget-Tracker-Setup-${version}.${ext}"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Mclaren97x",
+        "repo": "budget-tracker",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "electron-updater": "^6.8.9"
+  },
+  "devDependencies": {
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3"
+  }
+}
